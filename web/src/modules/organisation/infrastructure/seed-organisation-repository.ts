@@ -63,12 +63,12 @@ const profile: OrganisationProfile = {
     memberCount: 28,
     // Artwork: posts rDvgzful / CTcoEXal. Summaries are short plain descriptions to be confirmed with the BTC.
     departments: [
-      { slug: "truyen-thong", name: "Truyền thông", summary: "Nội dung, hình ảnh và fanpage.", art: { src: "/images/departments/truyen-thong.jpg", alt: "Cô bé có đôi cánh lông vũ bay giữa bầu trời sao, hình đại diện ban Truyền thông" } },
-      { slug: "su-kien", name: "Sự kiện", summary: "Tổ chức hoạt động tại các địa bàn.", art: { src: "/images/departments/su-kien.jpg", alt: "Sao Hỏa và cây bút lông vũ, hình đại diện ban Sự kiện" } },
-      { slug: "nhan-su", name: "Nhân sự", summary: "Tuyển chọn, đồng hành và gắn kết thành viên.", art: { src: "/images/departments/nhan-su.jpg", alt: "Trái Đất và cây bút lông vũ, hình đại diện ban Nhân sự" } },
-      { slug: "thiet-ke", name: "Thiết kế", summary: "Ấn phẩm, nhận diện cho từng mùa chương trình.", art: { src: "/images/departments/thiet-ke.jpg", alt: "Sao Kim vàng và cây bút lông vũ, hình đại diện ban Thiết kế" } },
-      { slug: "tai-chinh-doi-ngoai", name: "Tài chính — Đối ngoại", summary: "Gây quỹ, kết nối nhà tài trợ và đối tác.", art: { src: "/images/departments/tai-chinh-doi-ngoai.jpg", alt: "Sao Mộc có vành đai và cây bút lông vũ, hình đại diện ban Tài chính — Đối ngoại" } },
-      { slug: "quan-ly-ke-hoach", name: "Quản lý kế hoạch dự án", summary: "Lập kế hoạch, theo dõi tiến độ từng chương trình.", art: { src: "/images/departments/quan-ly-ke-hoach.jpg", alt: "Sao Thổ có vành đai và cây bút lông vũ, hình đại diện ban Quản lý kế hoạch dự án" } },
+      { slug: "truyen-thong", motto: "Viết tiếp câu chuyện của Ngòi", name: "Truyền thông", summary: "Nội dung, hình ảnh và fanpage.", art: { src: "/images/departments/truyen-thong.jpg", alt: "Cô bé có đôi cánh lông vũ bay giữa bầu trời sao, hình đại diện ban Truyền thông" } },
+      { slug: "su-kien", motto: "Làm chủ ánh đèn — Kiến tạo vì sao", name: "Sự kiện", summary: "Tổ chức hoạt động tại các địa bàn.", art: { src: "/images/departments/su-kien.jpg", alt: "Sao Hỏa và cây bút lông vũ, hình đại diện ban Sự kiện" } },
+      { slug: "nhan-su", motto: "Trọng tâm Trái Đất — Gắn kết toàn tâm", name: "Nhân sự", summary: "Tuyển chọn, đồng hành và gắn kết thành viên.", art: { src: "/images/departments/nhan-su.jpg", alt: "Trái Đất và cây bút lông vũ, hình đại diện ban Nhân sự" } },
+      { slug: "thiet-ke", motto: "Tần số Sao Kim — Con tim nghệ thuật", name: "Thiết kế", summary: "Ấn phẩm, nhận diện cho từng mùa chương trình.", art: { src: "/images/departments/thiet-ke.jpg", alt: "Sao Kim vàng và cây bút lông vũ, hình đại diện ban Thiết kế" } },
+      { slug: "tai-chinh-doi-ngoai", motto: "Sao Mộc mở đường — Dẫn lối thịnh vượng", name: "Tài chính — Đối ngoại", summary: "Gây quỹ, kết nối nhà tài trợ và đối tác.", art: { src: "/images/departments/tai-chinh-doi-ngoai.jpg", alt: "Sao Mộc có vành đai và cây bút lông vũ, hình đại diện ban Tài chính — Đối ngoại" } },
+      { slug: "quan-ly-ke-hoach", motto: "Trách nhiệm đi đầu — Vững cầu dự án", name: "Quản lý kế hoạch dự án", summary: "Lập kế hoạch, theo dõi tiến độ từng chương trình.", art: { src: "/images/departments/quan-ly-ke-hoach.jpg", alt: "Sao Thổ có vành đai và cây bút lông vũ, hình đại diện ban Quản lý kế hoạch dự án" } },
     ],
     introBanner: { src: "/images/team/btc-2026-2027-intro-wide.jpg", alt: "Banner “Giới thiệu Ban tổ chức” nhiệm kỳ 2026 – 2027 của Ngòi Tình Nguyện" },
   },

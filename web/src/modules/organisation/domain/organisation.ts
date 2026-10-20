@@ -8,6 +8,8 @@ export type Department = {
   /** The department's own “planet” artwork from the 2026–27 recruitment (it carries the department's motto). */
   art?: Image
   summary?: string
+  /** The department's motto from the 2026–27 recruitment artwork. */
+  motto?: string
 }
 
 export type Term = {
