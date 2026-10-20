@@ -9,9 +9,13 @@
     "lint": "eslint",
     "test": "vitest run",
     "build:address": "node scripts/build-address-data.mjs",
-    "import:posts": "node scripts/import-posts.mjs"
+    "import:posts": "node scripts/import-posts.mjs",
+    "build:cf": "opennextjs-cloudflare build",
+    "preview:cf": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.12",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -38,6 +42,7 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "vietnam-address-database": "^1.0.0",
-    "vitest": "^5.0.5"
+    "vitest": "^5.0.5",
+    "wrangler": "^4.151.3"
   }
 }
