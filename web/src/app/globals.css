@@ -186,3 +186,62 @@
 @utility bg-dusk-gradient {
   background-image: linear-gradient(180deg, var(--color-navy) 0%, var(--color-wine) 62%, var(--color-flame-orange) 100%);
 }
+
+/* Endless photo strip: the track holds the photos twice, so moving it by half loops seamlessly. */
+@keyframes strip-slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .strip-track {
+    animation: strip-slide 60s linear infinite;
+  }
+  .strip-track:hover {
+    animation-play-state: paused;
+  }
+  @supports (animation-timeline: view()) {
+    .drift {
+      animation: drift-y linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+
+@keyframes drift-y {
+  from {
+    transform: translateY(36px);
+  }
+  to {
+    transform: translateY(-36px);
+  }
+}
+
+@keyframes polaroid-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotate(var(--r, 0deg));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .polaroid {
+    animation: polaroid-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    animation-delay: calc(0.35s + var(--i, 0) * 0.12s);
+  }
+}
+
+.polaroid {
+  transform: rotate(var(--r, 0deg));
+  transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-6px);
+}

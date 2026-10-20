@@ -1,14 +1,8 @@
-import { routes } from "@/shared/config/routes"
 import type { Metadata } from "next"
-import Link from "next/link"
 
 import { campaignQueries } from "@/modules/campaigns"
-import { AboutHero, HistoryTimeline, MembershipSection, Mission, organisationQueries, WhoWeHelp } from "@/modules/organisation"
+import { AboutClosing, AboutHero, AboutVision, HistoryTimeline, MembershipSection, organisationQueries, PhotoStrip, WhoWeHelp } from "@/modules/organisation"
 import { LeadershipSection, peopleQueries } from "@/modules/people"
-import { donateHref } from "@/shared/config/site"
-import { CtaBand } from "@/shared/layout/cta-band"
-import { formatDate } from "@/shared/lib/format"
-import { Button } from "@/shared/ui/button"
 
 export const metadata: Metadata = {
   title: "Về chúng mình",
@@ -20,40 +14,28 @@ export default async function AboutPage() {
   const term = profile.currentTerm
   const leadership = await peopleQueries.leadership(term.label)
 
-  // The first campaign ever run illustrates the timeline (Campaigns owns that data).
-  const first = campaigns[0]
-  const place = first?.locations[0]
-  const photo = first && place
-    ? { ...first.cover, caption: `${first.highlight} · ${place.name}, ${place.province} · ${formatDate(first.onSiteDates[0])}` }
-    : undefined
+  // Provinces and sites come from the campaigns' own locations (Campaigns owns that data).
+  const byProvince = new Map<string, Set<string>>()
+  for (const c of campaigns) for (const l of c.locations) byProvince.set(l.province, (byProvince.get(l.province) ?? new Set()).add(l.name))
+  const places = [...byProvince].map(([province, names]) => ({ province, places: [...names].slice(0, 2).join(", ") }))
 
   return (
     <>
       <AboutHero profile={profile} />
-      <Mission pillars={profile.pillars} />
-      <HistoryTimeline milestones={profile.milestones} photo={photo} />
-      <WhoWeHelp groups={profile.beneficiaries} alsoHelps={profile.alsoHelps} />
+      <AboutVision pillars={profile.pillars} places={places} />
+      <HistoryTimeline />
+      <PhotoStrip />
+      <WhoWeHelp />
       <LeadershipSection
         eyebrow={`Nhiệm kỳ ${term.label}`}
         title={term.theme}
-        description={`Ban tổ chức nhiệm kỳ ${term.label} cùng ${term.memberCount} thành viên ở ${term.departments.length} ban: ${term.departments.map((d) => d.name).join(", ")}.`}
+        description={`Ban tổ chức ${leadership.length} người, cùng ${term.memberCount} thành viên ở ${term.departments.length} ban: ${term.departments.map((d) => d.name).join(", ")}.`}
         banner={term.introBanner}
         members={leadership}
+        memberCount={term.memberCount}
       />
       <MembershipSection membership={profile.membership} />
-      <CtaBand
-        title="Viết tiếp hành trình cùng Ngòi."
-        actions={
-          <>
-            <Button asChild size="lg">
-              <Link href={donateHref}>Ủng hộ chương trình</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href={routes.recruitment}>Trở thành tình nguyện viên</Link>
-            </Button>
-          </>
-        }
-      />
+      <AboutClosing />
     </>
   )
 }

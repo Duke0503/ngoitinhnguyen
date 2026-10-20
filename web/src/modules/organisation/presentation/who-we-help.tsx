@@ -1,45 +1,40 @@
+import Image from "next/image"
+
 import { Section } from "@/shared/layout/section"
-import { Chip } from "@/shared/ui/chip"
-import { Photo } from "@/shared/ui/photo"
 import { SectionHeading } from "@/shared/ui/section-heading"
 
-import type { BeneficiaryGroup } from "../domain/organisation"
+const groups = [
+  { title: "Học sinh vùng sâu, vùng xa", place: "Ia Băng, Đak Đoa — Gia Lai", photo: { src: "/images/photos3/gialai-students-group.jpg", alt: "Học sinh vùng xa ở Gia Lai chụp ảnh nhóm" }, tall: true },
+  { title: "Ông bà neo đơn", place: "Mái ấm Vị Hoàng, TP.HCM", photo: { src: "/images/photos3/elders-lanterns.jpg", alt: "Ông bà cùng tình nguyện viên vẽ lồng đèn" }, tall: false },
+  { title: "Bệnh nhân Bệnh viện K", place: "Xuân Yêu Thương · Hà Nội", photo: { src: "/images/photos3/hospital-k-gift.jpg", alt: "Tình nguyện viên trao quà Tết tại Bệnh viện K" }, tall: true },
+  { title: "Môi trường ấp đảo", place: "Thiềng Liềng, TP.HCM", photo: { src: "/images/photos3/island-cleanup.jpg", alt: "Dọn rác ven sông ở ấp đảo Thiềng Liềng" }, tall: false },
+]
 
-function WhoWeHelp({ groups, alsoHelps }: { groups: BeneficiaryGroup[]; alsoHelps: string[] }) {
+/** Four photo cards, alternate ones dropped lower so the row has a rhythm instead of a flat grid. */
+function WhoWeHelp() {
   return (
-    <Section tone="white" spacing="lg" aria-labelledby="help-title" containerClassName="flex flex-col gap-8 md:gap-10">
+    <Section tone="paper" spacing="lg" aria-labelledby="help-title" containerClassName="flex flex-col items-center gap-8 md:gap-12">
       <SectionHeading
         id="help-title"
         eyebrow="Chúng mình đồng hành cùng"
         title="Không chỉ các em nhỏ"
         description="Mỗi chương trình tìm đến những nơi còn thiếu: điểm trường vùng xa, mái ấm, bệnh viện và cả những con phố về đêm."
-        className="max-w-[760px]"
+        className="max-w-[760px] items-center text-center"
       />
-      <ul className="flex flex-col gap-5 md:grid md:grid-cols-3 md:gap-5">
-        {groups.map((g) => (
-          <li key={g.title} className="flex gap-4 md:flex-col md:gap-3">
-            <Photo
-              src={g.photo.src}
-              alt={g.photo.alt}
-              ratio={null}
-              frameClassName="h-[72px] w-24 shrink-0 md:h-[240px] md:w-full"
-              sizes="(min-width: 768px) 400px, 96px"
-            />
-            <div className="flex flex-col justify-center gap-1 md:justify-start">
-              <h3 className="font-head text-[17px] leading-snug font-semibold text-navy md:text-[21px]">{g.title}</h3>
-              <p className="text-[13px] text-muted-ink md:text-sm">{g.place}</p>
+      <ul className="grid w-full grid-cols-2 items-start gap-3 md:grid-cols-4 md:gap-6">
+        {groups.map((g, i) => (
+          <li key={g.title} className={`reveal ${i % 2 ? "md:pt-[60px]" : ""}`} style={{ "--i": i } as React.CSSProperties}>
+            <div className={`relative overflow-hidden rounded-xl bg-night md:rounded-[14px] ${g.tall ? "h-[230px] md:h-[400px]" : "h-[230px] md:h-[340px]"}`}>
+              <Image src={g.photo.src} alt={g.photo.alt} fill sizes="(min-width: 768px) 276px, 50vw" className="object-cover" />
+              <span aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-night/90" />
+              <div className="absolute inset-x-3 bottom-3 flex flex-col gap-0.5 text-white md:inset-x-5 md:bottom-5">
+                <h3 className="font-head text-[17px] leading-tight font-semibold md:text-[21px]">{g.title}</h3>
+                <p className="text-xs text-white/85 md:text-sm">{g.place}</p>
+              </div>
             </div>
           </li>
         ))}
       </ul>
-      <div className="flex flex-wrap items-center gap-2.5">
-        <span className="text-sm text-muted-ink">Và:</span>
-        {alsoHelps.map((t) => (
-          <Chip key={t} tone="neutral">
-            {t}
-          </Chip>
-        ))}
-      </div>
     </Section>
   )
 }

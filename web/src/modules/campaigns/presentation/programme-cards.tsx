@@ -1,83 +1,73 @@
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { routes } from "@/shared/config/routes"
 import { Section } from "@/shared/layout/section"
 import { Button } from "@/shared/ui/button"
-import { SnapRow } from "@/shared/ui/snap-row"
+import { Eyebrow } from "@/shared/ui/eyebrow"
 
-import { seriesLabel, type CampaignSeries } from "../domain/campaign"
+import { SeasonPanels, type Season } from "./season-panels"
 
-type Programme = { series: CampaignSeries; when: string; title: string; description: string; photo: { src: string; alt: string } }
-
-// Figures come from the campaigns' own results (see seed data); dates are the on-site months.
-const programmes: Programme[] = [
+// Figures come from the campaigns' own results (seed data); dates are the on-site months.
+const seasons: Season[] = [
   {
-    series: "doc-sach",
+    tag: "Đọc sách",
     when: "04.2024",
     title: "Trang sách nhỏ",
-    description: "Ngày hội đọc sách và “Trạm gửi tri thức” — chương trình đầu tiên của Ngòi ở Gia Lai.",
+    description: "Ngày hội đọc sách và “Trạm gửi tri thức” — chương trình đầu tiên của Ngòi, ở THCS Lê Lợi, Gia Lai.",
+    figure: "Chương trình đầu tiên",
+    href: routes.campaigns,
     photo: { src: "/images/photos2/ct01-tram-gui-tri-thuc.jpg", alt: "Ngày hội đọc sách và Trạm gửi tri thức của Ngòi ở Gia Lai" },
   },
   {
-    series: "trung-thu",
-    when: "2026",
+    tag: "Trung thu",
+    when: "2025 · 2026",
     title: "Trung thu yêu thương",
-    description: "Đèn Trăng 2 mang 100 lồng đèn và 163 phần quà đến TP.HCM, Hà Nội, Hưng Yên.",
+    description: "Đèn Trăng mang lồng đèn, quà và sân chơi đến Gia Lai, TP.HCM, Hà Nội và ấp đảo Thiềng Liềng.",
+    figure: "100 lồng đèn · 163 phần quà",
+    href: routes.campaigns,
     photo: { src: "/images/photos2/ttyt26-gift-handover.jpg", alt: "Tình nguyện viên trao quà Trung thu tận nhà ở ấp đảo Thiềng Liềng" },
   },
   {
-    series: "xuan",
+    tag: "Xuân",
     when: "02.2026",
     title: "Xuân yêu thương",
-    description: "3 đội hình, 35 tình nguyện viên, 51 phần quà Tết và buổi rung chuông vàng ở trường THCS Lê Lợi.",
+    description: "Gói bánh chưng xanh, trao quà Tết, sửa điểm trường và rung chuông vàng ở Gia Lai, Hưng Yên, Hà Nội.",
+    figure: "35 tình nguyện viên · 51 phần quà",
+    href: routes.campaigns,
     photo: { src: "/images/photos2/xyt26-chalkboard-class.jpg", alt: "Học sinh giơ bảng trong hội thi Rung chuông vàng" },
   },
   {
-    series: "20-10",
+    tag: "20/10",
     when: "đang gây quỹ",
     title: "Hoa Tháng 10",
     description: "Hoa kẽm nhung do tình nguyện viên làm, góp từ 25.000đ nhận giấy chứng nhận online.",
+    figure: "Từ 25.000đ",
+    href: routes.donate,
     photo: { src: "/images/campaigns/ht10-keyvisual.jpg", alt: "Hình ảnh chương trình Hoa Tháng 10" },
   },
 ]
 
-/** “Ngòi làm gì”: statement + a real quote, then one photo card per programme series with the caption on the picture. */
+/** “Ngòi làm gì”: heading, then the four seasons as expanding photo panels (one idea per season, short on every screen). */
 function ProgrammeCards() {
   return (
-    <Section tone="paper" spacing="lg" aria-labelledby="programmes-title" containerClassName="flex flex-col gap-10 md:gap-16">
-      <div className="mx-auto flex max-w-[980px] flex-col items-center gap-5 text-center md:gap-7">
-        <h2 className="font-head text-[28px] leading-[1.2] font-semibold text-balance text-orange-ink md:text-[46px]">
-          Chúng mình tin rằng mỗi em nhỏ đều xứng đáng được đến trường, được đọc sách và được yêu thương.
-        </h2>
-        <p id="programmes-title" className="font-head text-[26px] leading-tight font-semibold text-navy md:text-[38px]">
-          Ngòi làm gì, từng mùa một
-        </p>
-        <p className="max-w-[62ch] text-base leading-relaxed text-ink md:text-lg">
-          Bốn mùa trong năm, Ngòi đi những chuyến rất cụ thể: một ngày hội đọc sách, một đêm Trung thu trên ấp đảo, một cái Tết ở điểm trường.
+    <Section tone="paper" spacing="lg" aria-labelledby="programmes-title" containerClassName="flex flex-col gap-8 md:gap-12">
+      <div className="grid gap-4 md:grid-cols-[1fr_420px] md:items-end md:gap-24">
+        <div className="flex flex-col gap-3 md:gap-4">
+          <Eyebrow tone="orange">Ngòi làm gì</Eyebrow>
+          <h2 id="programmes-title" className="font-head text-[32px] leading-[1.12] font-semibold text-balance text-navy md:text-[46px] md:leading-[1.1]">
+            Bốn mùa, bốn kiểu đi cùng các em.
+          </h2>
+        </div>
+        <p className="text-base leading-relaxed text-muted-ink md:text-[17px] md:leading-[1.65]">
+          Mỗi mùa một chuyến rất cụ thể: một ngày hội đọc sách, một đêm Trung thu trên ấp đảo, một cái Tết ở điểm trường, một đoá hoa tháng 10.
         </p>
       </div>
 
-      <SnapRow aria-label="Các dòng chương trình" gridClassName="md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-        {programmes.map((p) => (
-          <Link key={p.title} href={routes.campaigns} className="group/card relative block h-[380px] md:h-[390px]">
-            <div className="absolute inset-0 overflow-hidden rounded-2xl bg-night shadow-[0_14px_30px_-12px_rgba(11,18,51,0.4)] md:rounded-[14px]">
-              <Image src={p.photo.src} alt={p.photo.alt} fill sizes="(min-width: 1200px) 584px, (min-width: 768px) 50vw, 300px" className="object-cover transition-transform duration-700 group-hover/card:scale-[1.04] motion-reduce:transition-none" />
-            </div>
-            <span className="absolute top-4 left-3.5 rounded-[4px] bg-flame-gold px-3 py-1.5 text-xs font-bold tracking-[0.1em] text-night uppercase md:top-[26px] md:-left-3.5">
-              {seriesLabel(p.series)} · {p.when}
-            </span>
-            <div className="absolute inset-x-3 bottom-3 flex flex-col gap-1 rounded-[10px] bg-white/95 px-4 py-3.5 md:inset-x-6 md:bottom-6 md:px-[22px] md:py-4">
-              <h3 className="font-head text-[21px] leading-tight font-semibold text-navy transition-colors group-hover/card:text-cta md:text-2xl">{p.title}</h3>
-              <p className="text-sm leading-normal text-muted-ink">{p.description}</p>
-            </div>
-          </Link>
-        ))}
-      </SnapRow>
+      <SeasonPanels seasons={seasons} />
 
-      <div className="flex justify-center">
-        <Button asChild size="lg" variant="gold" className="max-sm:w-full">
+      <div>
+        <Button asChild size="lg" className="bg-navy hover:bg-night max-sm:w-full">
           <Link href={routes.campaigns}>
             Xem tất cả chương trình
             <ArrowRight aria-hidden />
