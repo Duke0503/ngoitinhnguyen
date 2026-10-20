@@ -24,12 +24,6 @@ export const PAGE_SIZE = 12
 
 const byNewest = (a: Post, b: Post) => b.publishedOn.localeCompare(a.publishedOn)
 
-/** First post with a cover and an excerpt leads the section; the rest are listed. */
-export function splitFeatured(posts: Post[]): { featured: Post | null; rest: Post[] } {
-  const featured = posts.find((p) => p.excerpt) ?? posts[0] ?? null
-  return { featured, rest: posts.filter((p) => p !== featured).sort(byNewest) }
-}
-
 /** Topics with their post counts, most posts first (ties: newest topic first). */
 export function topicsOf(posts: Post[]): { tag: string; count: number }[] {
   const counts = new Map<string, number>()

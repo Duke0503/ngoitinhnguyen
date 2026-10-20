@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { routes } from "@/shared/config/routes"
 import { formatDate } from "@/shared/lib/format"
-import { MetaLine } from "@/shared/ui/meta"
+import { Chip } from "@/shared/ui/chip"
 
 import type { Post } from "../domain/post"
 
@@ -21,8 +21,11 @@ function PostCard({ post, priority = false }: { post: Post; priority?: boolean }
             priority={priority}
             className="object-cover transition-transform duration-300 group-hover/post:scale-[1.03] motion-reduce:transition-none"
           />
+          <Chip tone="navy" size="sm" className="absolute top-3 left-3 shadow-sm">
+            {post.tag}
+          </Chip>
         </div>
-        <MetaLine tag={post.tag} date={formatDate(post.publishedOn)} />
+        <time className="text-xs text-muted-ink">{formatDate(post.publishedOn)}</time>
         <h3 className="line-clamp-3 font-head text-lg leading-snug font-semibold text-navy transition-colors group-hover/post:text-cta md:text-xl">{post.title}</h3>
         {post.excerpt && <p className="line-clamp-2 text-[15px] leading-relaxed text-muted-ink">{post.excerpt}</p>}
       </Link>

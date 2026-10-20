@@ -6,6 +6,7 @@ export const campaignQueries = makeCampaignQueries(seedCampaignRepository)
 
 export { displayTitle, isActive, isFinished } from "./domain/campaign"
 export type { Campaign, ImpactSummary } from "./domain/campaign"
+export { ProgrammeCards } from "./presentation/programme-cards"
 export { ResultsTable } from "./presentation/results-table"
 export { CampaignList } from "./presentation/campaign-list"
 export { ActiveCampaignPromo } from "./presentation/active-campaign-promo"

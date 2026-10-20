@@ -121,3 +121,56 @@
     background: #fdb51155;
   }
 }
+
+/* ── Motion ─────────────────────────────────────────────────────────────────
+   Calm, scroll-linked reveals in pure CSS: no JS, no hydration flash, and content stays fully visible
+   where animation-timeline is unsupported or the visitor prefers reduced motion. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes parallax-y {
+  from {
+    transform: translateY(-5%) scale(1.12);
+  }
+  to {
+    transform: translateY(5%) scale(1.12);
+  }
+}
+
+@keyframes hero-settle {
+  from {
+    transform: scale(1.07);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-settle {
+    animation: hero-settle 2.4s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      /* --i staggers siblings: each step starts a little later in the viewport. */
+      animation-range: entry calc(var(--i, 0) * 5%) entry calc(38% + var(--i, 0) * 5%);
+    }
+
+    .parallax {
+      animation: parallax-y linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}

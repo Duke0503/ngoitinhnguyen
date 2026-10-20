@@ -1,7 +1,7 @@
 import { routes } from "@/shared/config/routes"
 import Link from "next/link"
 
-import { campaignQueries, CurrentCampaign, ImpactBand, Journey } from "@/modules/campaigns"
+import { campaignQueries, CurrentCampaign, ImpactBand, Journey, ProgrammeCards } from "@/modules/campaigns"
 import { NewsSection, postQueries } from "@/modules/content"
 import { FundProgress, fundraisingQueries, Transparency } from "@/modules/fundraising"
 import { HomeHero, organisationQueries, WaysToHelp } from "@/modules/organisation"
@@ -30,6 +30,7 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero profile={profile} campaignCount={impact.campaigns} />
+      <ProgrammeCards />
       <ImpactBand impact={impact} termMembers={{ count: term.memberCount, label: `thành viên nhiệm kỳ ${term.label}` }} />
       <PartnerStrip partners={partners} />
       {current && (

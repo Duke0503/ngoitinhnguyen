@@ -1,4 +1,5 @@
 import { Section } from "@/shared/layout/section"
+import { CountUp } from "@/shared/ui/count-up"
 import { SectionHeading } from "@/shared/ui/section-heading"
 import { Stat } from "@/shared/ui/stat"
 
@@ -40,7 +41,7 @@ function ImpactBand({ impact, termMembers }: ImpactBandProps) {
                 size="lg"
                 tone="dark"
                 divider={i === 0 ? "none" : "responsive"}
-                value={s.value}
+                value={<CountUp value={s.value} />}
                 label={s.label}
                 className={i === 0 ? "max-md:border-t max-md:border-white/15 max-md:pt-4 md:pr-7" : "md:px-7"}
               />
