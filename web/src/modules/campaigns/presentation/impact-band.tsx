@@ -12,10 +12,12 @@ type ImpactBandProps = {
   impact: ImpactSummary
   /** Members of the current term; owned by the Organisation context, passed in by the page. */
   termMembers?: { count: number; label: string }
+  /** The ask under the numbers; off on the Impact page, which has its own closing band. */
+  showAsk?: boolean
 }
 
 /** Centred counters on white, then the ask: proof first, action right after. */
-function ImpactBand({ impact, termMembers }: ImpactBandProps) {
+function ImpactBand({ impact, termMembers, showAsk = true }: ImpactBandProps) {
   const stats = [
     { value: formatImpact(impact.gifts), label: "phần quà trao tận tay" },
     { value: formatImpact(impact.lanterns), label: "lồng đèn Trung thu cho ấp đảo" },
@@ -43,9 +45,11 @@ function ImpactBand({ impact, termMembers }: ImpactBandProps) {
           </div>
         ))}
       </dl>
-      <Button asChild size="lg">
-        <Link href={donateHref}>Ủng hộ ngay</Link>
-      </Button>
+      {showAsk && (
+        <Button asChild size="lg">
+          <Link href={donateHref}>Ủng hộ ngay</Link>
+        </Button>
+      )}
     </Section>
   )
 }

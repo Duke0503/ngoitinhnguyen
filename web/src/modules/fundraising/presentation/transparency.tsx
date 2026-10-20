@@ -28,7 +28,7 @@ function Column({ title, lines, tone }: { title: string; lines: ReportLine[]; to
 /** “Minh bạch từng đồng”: money in by source, money out by item, balance carried over. */
 function Transparency({ report, archiveLink = true }: { report: FinancialReport; archiveLink?: boolean }) {
   return (
-    <Section spacing="lg" aria-labelledby="transparency-title" containerClassName="grid gap-8 md:grid-cols-[440px_1fr] md:items-center md:gap-[72px]">
+    <Section spacing="lg" tone="paper" className="bg-[#e8f0f7]" aria-labelledby="transparency-title" containerClassName="grid gap-8 md:grid-cols-[440px_1fr] md:items-center md:gap-[72px]">
       <div className="flex flex-col gap-5 md:gap-6">
         <SectionHeading
           id="transparency-title"

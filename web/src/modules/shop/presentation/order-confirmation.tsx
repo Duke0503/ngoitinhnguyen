@@ -10,6 +10,7 @@ import { StatusTimeline } from "@/shared/ui/status-timeline"
 import { VietQrCard, type Fund } from "@/modules/fundraising"
 
 import type { PlacedOrder } from "../application/place-order"
+import { PaymentProofForm } from "./payment-proof-form"
 import { orderStatusLabel, orderSteps, stepIndex } from "../domain/order"
 
 type OrderConfirmationProps = {
@@ -74,6 +75,8 @@ function OrderConfirmation({ order, fund, pickupLabel, onOrderAgain }: OrderConf
           />
         </Card>
       </div>
+
+      <PaymentProofForm campaignCode={order.campaignCode} orderCode={order.code} />
 
       <div className="flex flex-col gap-4 rounded-xl border border-line bg-white p-5 md:p-7">
         <CardKicker>Trạng thái đơn hàng</CardKicker>

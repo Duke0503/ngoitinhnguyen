@@ -17,7 +17,7 @@ type ResultsTableProps = {
 /** Per-campaign outcome ledger: when, where, what was counted, and whether the financial report is out. */
 function ResultsTable({ campaigns, reportedCodes }: ResultsTableProps) {
   return (
-    <Section spacing="md" tone="white" aria-labelledby="results-title" containerClassName="flex flex-col gap-8 md:gap-10">
+    <Section spacing="md" tone="paper" aria-labelledby="results-title" containerClassName="flex flex-col gap-8 md:gap-10">
       <SectionHeading
         id="results-title"
         as="h2"
