@@ -21,7 +21,12 @@ function ImpactBand({ impact, termMembers }: ImpactBandProps) {
   ]
 
   return (
-    <Section tone="night" spacing="md" aria-labelledby="impact-title" containerClassName="flex flex-col gap-10 md:gap-14">
+    <Section
+      tone="night"
+      spacing="md"
+      aria-labelledby="impact-title"
+      className="[--slant:clamp(28px,4.5vw,64px)] pt-[calc(var(--slant)+40px)] [clip-path:polygon(0_var(--slant),100%_0,100%_100%,0_100%)] md:pt-[calc(var(--slant)+72px)]"
+      containerClassName="flex flex-col gap-10 md:gap-14">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <SectionHeading
           id="impact-title"

@@ -19,8 +19,16 @@ const toDetail = (r: Row): PostDetail => ({
 
 const posts = (data as Row[]).map(toDetail)
 
+// Home highlights: the Thiềng Liềng stories (best photography). Matched by the end of the Facebook post id.
+const featuredIds = ["fs5h5pUl", "H3HAe7dl", "kYgTDPZl"]
+const idOf = new Map((data as Row[]).map((r) => [r.slug, r.sourceId]))
+
 export const jsonPostRepository: PostRepository = {
   async all() {
     return posts
+  },
+  async featured(limit) {
+    const picked = featuredIds.flatMap((id) => posts.filter((p) => idOf.get(p.slug)?.endsWith(id)))
+    return (picked.length ? picked : posts).slice(0, limit)
   },
 }
