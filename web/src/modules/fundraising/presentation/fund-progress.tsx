@@ -30,7 +30,7 @@ function FundProgress({ progress, campaignTitle }: { progress: FundProgressData;
           <Link href={donateHref}>Góp {formatVnd(progress.certificateFrom ?? 50_000)}</Link>
         </Button>
         {progress.certificateFrom && (
-          <TextLink href={donateHref} icon="none" underline size="sm">
+          <TextLink href={donateHref} icon="none" underline size="sm" className="min-h-11">
             Nhận giấy chứng nhận có mộc đỏ
           </TextLink>
         )}

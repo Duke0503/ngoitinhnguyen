@@ -18,7 +18,7 @@ function SlantBand({ tone = "flame", className, containerClassName, children, ..
       className={cn(
         "relative w-full px-5 py-[calc(var(--slant)+48px)] text-white [--slant:clamp(28px,4.5vw,72px)] md:px-10 md:py-[calc(var(--slant)+64px)] xl:px-0",
         "[clip-path:polygon(0_var(--slant),100%_0,100%_calc(100%-var(--slant)),0_100%)]",
-        tone === "flame" ? "bg-[linear-gradient(180deg,#0b1233_0%,#1f2a5c_45%,#7a2a3a_78%,#e5391f_100%)]" : "bg-navy",
+        tone === "flame" ? "bg-flame-gradient" : "bg-navy",
         className
       )}
       {...props}

@@ -33,7 +33,7 @@ function PhaseTimeline({ phases }: { phases: CampaignPhase[] }) {
                 last && "md:border-moon"
               )}
             >
-              <span className="text-xs font-bold text-flame-orange md:order-first md:tracking-wide">
+              <span className="text-xs font-bold text-orange-ink md:order-first md:tracking-wide">
                 {String(i + 1).padStart(2, "0")}
                 <span className="max-md:hidden"> · {formatShortRange(p.startsOn, p.endsOn)}</span>
               </span>

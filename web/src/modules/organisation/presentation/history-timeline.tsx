@@ -29,7 +29,7 @@ function HistoryTimeline({ milestones, photo }: HistoryTimelineProps) {
       <ol>
         {events.map((m, i) => (
           <li key={m.title} className={cn("flex gap-4 border-t border-line py-3.5 md:gap-7 md:py-[18px]", i === events.length - 1 && "border-b")}>
-            <time className={cn("w-[84px] shrink-0 pt-0.5 text-[13px] font-bold md:w-[110px] md:text-sm", m.emphasis ? "text-cta" : "text-flame-orange")}>{when(m)}</time>
+            <time className={cn("w-[84px] shrink-0 pt-0.5 text-[13px] font-bold md:w-[110px] md:text-sm", m.emphasis ? "text-cta" : "text-orange-ink")}>{when(m)}</time>
             <div className="flex flex-col gap-1">
               <h3 className="font-head text-[17px] leading-snug font-semibold text-navy md:text-xl">{m.title}</h3>
               <p className="text-sm leading-normal text-muted-ink max-md:hidden md:text-[15px]">{m.description}</p>

@@ -8,6 +8,9 @@
   --color-flame-gold: #fdb511;
   --color-flame-orange: #f46a22;
   --color-ember: #e5391f;
+  /* Orange for small text on light backgrounds: flame-orange is 2.9:1 on cream, this is 5:1. */
+  --color-orange-ink: #b8470f;
+  --color-wine: #7a2a3a;
   --color-cta: #c9361a;
   --color-cta-hover: #b02e14;
   --color-navy: #1f2a5c;
@@ -173,4 +176,13 @@
       animation-range: cover;
     }
   }
+}
+
+/* Brand gradients, built from tokens so a palette change flows through. */
+@utility bg-flame-gradient {
+  background-image: linear-gradient(180deg, var(--color-night) 0%, var(--color-navy) 45%, var(--color-wine) 78%, var(--color-ember) 100%);
+}
+
+@utility bg-dusk-gradient {
+  background-image: linear-gradient(180deg, var(--color-navy) 0%, var(--color-wine) 62%, var(--color-flame-orange) 100%);
 }

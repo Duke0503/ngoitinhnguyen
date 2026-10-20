@@ -21,7 +21,7 @@ function NumberedRow({ index, title, description, href, className }: NumberedRow
         className
       )}
     >
-      <span className="w-[26px] shrink-0 font-head text-[17px] text-flame-orange md:w-[34px] md:text-xl">
+      <span className="w-[26px] shrink-0 font-head text-[17px] text-orange-ink md:w-[34px] md:text-xl">
         {String(index).padStart(2, "0")}
       </span>
       <span className="flex min-w-0 flex-1 flex-col gap-1 md:gap-1.5">

@@ -12,7 +12,8 @@ async function CopyrightYear() {
   return <>{new Date().getFullYear()}</>
 }
 
-const linkClass = "text-sm text-white/85 transition-colors hover:text-flame-gold"
+// py-3 makes the tap target 44px tall without changing the visual rhythm much.
+const linkClass = "inline-flex items-center py-3 text-sm text-white/85 transition-colors hover:text-flame-gold md:py-1.5"
 const headClass = "text-xs font-semibold tracking-[0.16em] text-flame-gold uppercase"
 
 function SiteFooter() {

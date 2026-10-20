@@ -62,7 +62,7 @@ function CampaignList({ campaigns }: { campaigns: Campaign[] }) {
                 </Chip>
               </div>
               <p className="flex items-center gap-2.5 text-xs">
-                <span className="font-bold tracking-[0.08em] text-flame-orange uppercase">{seriesLabel(c.series)}</span>
+                <span className="font-bold tracking-[0.08em] text-orange-ink uppercase">{seriesLabel(c.series)}</span>
                 <span aria-hidden className="size-[3px] rounded-full bg-muted-ink" />
                 <time className="text-muted-ink">{formatMonthYear(c.onSiteDates[0] ?? c.startsOn)}</time>
               </p>

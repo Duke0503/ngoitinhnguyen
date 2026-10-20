@@ -38,7 +38,7 @@ function Journey({ campaigns }: { campaigns: Campaign[] }) {
               </div>
               <div className="flex min-w-0 flex-1 flex-col gap-1 md:gap-3">
                 <div className="flex items-center gap-2.5">
-                  <time className="text-xs font-bold tracking-wider text-flame-orange md:text-[13px]">{formatMonthYear(c.onSiteDates[0])}</time>
+                  <time className="text-xs font-bold tracking-wider text-orange-ink md:text-[13px]">{formatMonthYear(c.onSiteDates[0])}</time>
                   <span aria-hidden className="hidden h-px flex-1 bg-line md:block" />
                 </div>
                 <h3 className="font-head text-[17px] leading-snug font-semibold text-navy transition-colors group-hover/stop:text-cta md:text-[21px]">

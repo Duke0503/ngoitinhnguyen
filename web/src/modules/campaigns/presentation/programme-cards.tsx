@@ -48,7 +48,7 @@ function ProgrammeCards() {
   return (
     <Section tone="paper" spacing="lg" aria-labelledby="programmes-title" containerClassName="flex flex-col gap-10 md:gap-16">
       <div className="mx-auto flex max-w-[980px] flex-col items-center gap-5 text-center md:gap-7">
-        <h2 className="font-head text-[28px] leading-[1.2] font-semibold text-balance text-flame-orange md:text-[46px]">
+        <h2 className="font-head text-[28px] leading-[1.2] font-semibold text-balance text-orange-ink md:text-[46px]">
           Chúng mình tin rằng mỗi em nhỏ đều xứng đáng được đến trường, được đọc sách và được yêu thương.
         </h2>
         <p id="programmes-title" className="font-head text-[26px] leading-tight font-semibold text-navy md:text-[38px]">

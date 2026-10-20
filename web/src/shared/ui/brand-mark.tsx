@@ -12,13 +12,13 @@ type BrandMarkProps = {
 }
 
 const sizes = {
-  sm: { gap: "gap-2.5", logo: "h-9", name: "text-[17px]", sub: "text-[9px]" },
-  md: { gap: "gap-3", logo: "h-12", name: "text-[21px]", sub: "text-[10px]" },
+  sm: { gap: "gap-2.5", logo: "h-9", name: "text-[17px]", sub: "text-[11px]" },
+  md: { gap: "gap-3", logo: "h-12", name: "text-[21px]", sub: "text-[11px]" },
   responsive: {
     gap: "gap-2.5 md:gap-3",
     logo: "h-9 md:h-12",
     name: "text-[17px] md:text-[21px]",
-    sub: "text-[9px] md:text-[10px]",
+    sub: "text-[11px]",
   },
 }
 
@@ -50,7 +50,7 @@ function BrandMark({ tone = "light", size = "md", href = "/", className }: Brand
           className={cn(
             "font-semibold tracking-[0.24em] uppercase",
             sizes[size].sub,
-            tone === "light" ? "text-flame-orange" : "text-flame-gold"
+            tone === "light" ? "text-orange-ink" : "text-flame-gold"
           )}
         >
           Viết Cho Em

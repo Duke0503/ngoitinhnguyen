@@ -26,7 +26,7 @@ function HomeHero({ profile }: HomeHeroProps) {
       <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-1/2 bg-gradient-to-b from-transparent to-night/70" />
 
       <div className="mx-auto flex min-h-[640px] w-full max-w-[1100px] flex-col items-center justify-center gap-5 px-5 pt-20 pb-52 text-center md:min-h-[760px] md:gap-6 md:px-10 md:pt-24 md:pb-44">
-        <Eyebrow tone="gold" className="justify-center text-[11px] leading-relaxed tracking-[0.14em] md:text-[13px] md:tracking-[0.16em]">
+        <Eyebrow tone="gold" className="justify-center text-xs leading-relaxed tracking-[0.12em] md:text-[13px] md:tracking-[0.16em]">
           Dự án thiện nguyện từ năm {profile.volunteerSince} · {profile.affiliation}
         </Eyebrow>
         <h1 id="home-title" className="max-w-[16ch] font-head text-[40px] leading-[1.08] font-semibold tracking-tight text-balance md:max-w-[1000px] md:text-[72px]">

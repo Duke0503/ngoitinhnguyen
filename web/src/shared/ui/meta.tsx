@@ -23,7 +23,7 @@ function MetaItem({
         className
       )}
     >
-      <Icon aria-hidden className="mt-0.5 size-4 shrink-0 text-flame-orange" />
+      <Icon aria-hidden className="mt-0.5 size-4 shrink-0 text-orange-ink" />
       <span>{children}</span>
     </span>
   )
@@ -33,7 +33,7 @@ function MetaItem({
 function MetaLine({ tag, date, className }: { tag: string; date: string; className?: string }) {
   return (
     <p className={cn("flex items-center gap-2.5 text-xs", className)}>
-      <span className="font-bold tracking-[0.08em] text-flame-orange uppercase">{tag}</span>
+      <span className="font-bold tracking-[0.08em] text-orange-ink uppercase">{tag}</span>
       <span aria-hidden className="size-[3px] rounded-full bg-muted-ink" />
       <time className="text-muted-ink">{date}</time>
     </p>

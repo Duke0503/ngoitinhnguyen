@@ -6,7 +6,7 @@ import { cn } from "@/shared/lib/utils"
 const eyebrowVariants = cva("inline-flex items-center gap-2.5 text-eyebrow font-semibold uppercase", {
   variants: {
     tone: {
-      orange: "text-flame-orange",
+      orange: "text-orange-ink",
       gold: "text-flame-gold",
       cta: "text-cta",
       muted: "text-muted-ink",

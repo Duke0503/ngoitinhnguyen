@@ -13,7 +13,7 @@ function NewsletterBand({ email }: { email: string }) {
   return (
     <section
       aria-labelledby="newsletter-title"
-      className="relative w-full bg-[linear-gradient(180deg,#1f2a5c_0%,#7a2a3a_62%,#f46a22_100%)] px-5 py-[calc(var(--slant)+48px)] text-white [--slant:clamp(28px,4.5vw,72px)] [clip-path:polygon(0_var(--slant),100%_0,100%_100%,0_100%)] md:px-10 md:py-[calc(var(--slant)+88px)] xl:px-0"
+      className="relative w-full bg-dusk-gradient px-5 py-[calc(var(--slant)+48px)] text-white [--slant:clamp(28px,4.5vw,72px)] [clip-path:polygon(0_var(--slant),100%_0,100%_100%,0_100%)] md:px-10 md:py-[calc(var(--slant)+88px)] xl:px-0"
     >
       <div className="mx-auto grid w-full max-w-[1200px] items-center gap-8 md:grid-cols-[1fr_580px] md:gap-24">
         <div className="flex flex-col gap-4 md:gap-5">

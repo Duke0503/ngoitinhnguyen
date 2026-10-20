@@ -60,7 +60,7 @@ function NewsSection({ posts }: { posts: Post[] }) {
         </ul>
       </div>
 
-      <TextLink href={routes.news} underline className="md:hidden">
+      <TextLink href={routes.news} underline className="min-h-11 md:hidden">
         Tất cả bài viết
       </TextLink>
     </Section>

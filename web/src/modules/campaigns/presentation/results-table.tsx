@@ -37,7 +37,7 @@ function ResultsTable({ campaigns, reportedCodes }: ResultsTableProps) {
                 className="group/row grid gap-3 py-5 md:grid-cols-[1.3fr_1fr_1.2fr_auto] md:items-center md:gap-8 md:py-6"
               >
                 <div className="flex flex-col gap-1">
-                  <time className="text-xs font-bold tracking-wider text-flame-orange">{formatMonthYear(c.onSiteDates[0] ?? c.startsOn)}</time>
+                  <time className="text-xs font-bold tracking-wider text-orange-ink">{formatMonthYear(c.onSiteDates[0] ?? c.startsOn)}</time>
                   <h3 className="font-head text-lg leading-snug font-semibold text-navy transition-colors group-hover/row:text-cta md:text-xl">{displayTitle(c)}</h3>
                 </div>
                 <p className="text-sm text-muted-ink">{provinceLine(c)}</p>
