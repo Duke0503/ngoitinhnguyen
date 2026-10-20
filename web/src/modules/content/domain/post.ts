@@ -20,7 +20,7 @@ export type PostDetail = Post & {
   campaignSlug?: string
 }
 
-export const PAGE_SIZE = 12
+export const PAGE_SIZE = 9
 
 const byNewest = (a: Post, b: Post) => b.publishedOn.localeCompare(a.publishedOn)
 

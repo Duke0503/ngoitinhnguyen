@@ -1,4 +1,5 @@
 // Pure list logic for the Campaigns page: filter by series / year / province / text, then paginate.
+import { pageCount as sharedPageCount } from "@/shared/lib/pagination"
 import { provinceLine, seriesLabel, type Campaign, type CampaignSeries } from "./campaign"
 
 export const PER_PAGE = 9
@@ -24,14 +25,8 @@ export function filterCampaigns(list: Campaign[], f: CampaignFilter): Campaign[]
     .sort((a, b) => (b.onSiteDates[0] ?? b.startsOn).localeCompare(a.onSiteDates[0] ?? a.startsOn))
 }
 
-export const pageCount = (total: number) => Math.max(1, Math.ceil(total / PER_PAGE))
-
-/** Page numbers to show: 1 … current±1 … last, with gaps marked by 0. */
-export function pageWindow(current: number, last: number): number[] {
-  const set = new Set([1, 2, current - 1, current, current + 1, last])
-  const nums = [...set].filter((n) => n >= 1 && n <= last).sort((a, b) => a - b)
-  return nums.flatMap((n, i) => (i > 0 && n - nums[i - 1] > 1 ? [0, n] : [n]))
-}
+export const pageCount = (total: number) => sharedPageCount(total, PER_PAGE)
+export { pageWindow } from "@/shared/lib/pagination"
 
 export const filterOptions = (list: Campaign[]) => ({
   series: [...new Set(list.map((c) => c.series))],
