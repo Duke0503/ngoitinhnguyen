@@ -6,6 +6,7 @@ import { fundraisingQueries } from "@/modules/fundraising"
 import { ShopFlow, shopQueries } from "@/modules/shop"
 import { routes } from "@/shared/config/routes"
 import { Breadcrumb } from "@/shared/layout/breadcrumb"
+import { PageHero } from "@/shared/layout/page-hero"
 import { Section } from "@/shared/layout/section"
 import { Button } from "@/shared/ui/button"
 import { Chip } from "@/shared/ui/chip"
@@ -30,24 +31,25 @@ export default async function ShopPage() {
   const title = displayTitle(current)
 
   return (
-    <Section spacing="none" className="py-8 md:py-12" containerClassName="flex flex-col gap-6 md:gap-8">
-      <Breadcrumb items={[{ label: title, href: routes.campaign(current.slug) }, { label: "Cửa hàng gây quỹ" }]} />
-      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-10">
-        <SectionHeading
-          as="h1"
-          size="lg"
-          className="max-w-[700px]"
-          title={`Mặt hàng gây quỹ ${title}`}
-          description="Hoa và móc khoá kẽm nhung do chính ban tổ chức và tình nguyện viên làm. Toàn bộ lợi nhuận vào quỹ chương trình."
-        />
+    <>
+      <PageHero
+        id="shop-title"
+        photo="/images/photos2/ttyt26-vol-snacks.jpg"
+        eyebrow="Cửa hàng gây quỹ"
+        title={`Mặt hàng gây quỹ ${title}`}
+        description="Hoa và móc khoá kẽm nhung do chính ban tổ chức và tình nguyện viên làm. Toàn bộ lợi nhuận vào quỹ chương trình."
+      >
         {config.promotion && (
-          <Chip tone="blossom" size="lg" icon={<Gift aria-hidden />} className="self-start">
+          <Chip tone="blossom" size="lg" icon={<Gift aria-hidden />}>
             {config.promotion.label}
           </Chip>
         )}
-      </div>
-      <ShopFlow config={config} fund={fund} />
-    </Section>
+      </PageHero>
+      <Section tone="paper" spacing="none" className="pt-6 pb-16 md:pb-24" containerClassName="flex flex-col gap-6 md:gap-8">
+        <Breadcrumb items={[{ label: title, href: routes.campaign(current.slug) }, { label: "Cửa hàng gây quỹ" }]} />
+        <ShopFlow config={config} fund={fund} />
+      </Section>
+    </>
   )
 }
 

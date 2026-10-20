@@ -1,6 +1,7 @@
 import { routes } from "@/shared/config/routes"
 import type { Metadata } from "next"
 import Link from "next/link"
+import { FileCheck, Heart, Receipt } from "lucide-react"
 
 import { campaignQueries, displayTitle } from "@/modules/campaigns"
 import { DonateFlow, fundraisingQueries } from "@/modules/fundraising"
@@ -10,6 +11,7 @@ import { Section } from "@/shared/layout/section"
 import { formatVnd } from "@/shared/lib/format"
 import { Button } from "@/shared/ui/button"
 import { FlameRule } from "@/shared/ui/flame-rule"
+import { PageHero } from "@/shared/layout/page-hero"
 import { SectionHeading } from "@/shared/ui/section-heading"
 
 export const metadata: Metadata = {
@@ -19,6 +21,12 @@ export const metadata: Metadata = {
 
 // The donation page always serves the campaign that is running now; its fund
 // (account, presets, certificate rule) comes from the Fundraising context.
+const promises = [
+  { icon: Heart, text: "Biến thành những món quà nhỏ gửi đến các em và các cô ở Mái ấm Thiên Phước, quận 12." },
+  { icon: FileCheck, text: "Được ghi nhận công khai, kèm giấy chứng nhận online có mộc đỏ khi đủ mức tối thiểu." },
+  { icon: Receipt, text: "Được báo cáo thu — chi minh bạch sau khi chương trình tổng kết." },
+]
+
 export default async function DonatePage() {
   const current = await campaignQueries.current()
   const fund = current ? await fundraisingQueries.fundFor(current.code) : null
@@ -29,23 +37,35 @@ export default async function DonatePage() {
   const certificate = fund.certificateFrom ? ` Từ ${formatVnd(fund.certificateFrom)}: nhận giấy chứng nhận online.` : ""
 
   return (
-    <Section spacing="none" className="py-8 md:py-12" containerClassName="flex flex-col gap-5 md:gap-6">
-      <Breadcrumb items={[{ label: title, href: routes.campaign(current.slug) }, { label: "Ủng hộ" }]} />
-      <DonateFlow
-        fund={fund}
-        campaignTitle={title}
-        campaignHref={routes.campaign(current.slug)}
-        heading={
-          <SectionHeading
-            as="h1"
-            size="lg"
-            className="max-w-[640px]"
-            title={`Chung tay cùng ${title}`}
-            description={`Chuyển khoản qua VietQR, sau đó gửi xác nhận để ban tổ chức ghi nhận khoản ủng hộ của bạn.${certificate}`}
-          />
-        }
+    <>
+      <PageHero
+        id="donate-title"
+        photo="/images/photos2/ttyt26-vol-snacks.jpg"
+        eyebrow={`Ủng hộ · ${title}`}
+        title="Góp một đóa hoa nhỏ, gửi trọn yêu thương."
+        description={`Chuyển khoản qua VietQR, sau đó gửi xác nhận để ban tổ chức ghi nhận khoản ủng hộ của bạn.${certificate}`}
       />
-    </Section>
+      <Section tone="paper" spacing="none" className="pt-6 pb-16 md:pb-24" containerClassName="flex flex-col gap-10 md:gap-14">
+        <Breadcrumb items={[{ label: title, href: routes.campaign(current.slug) }, { label: "Ủng hộ" }]} />
+        <DonateFlow
+          fund={fund}
+          campaignTitle={title}
+          campaignHref={routes.campaign(current.slug)}
+          heading={<SectionHeading as="h2" size="md" className="max-w-[640px]" title="Chọn số tiền và chuyển khoản" description="Làm theo ba bước: chọn số tiền, quét mã VietQR, rồi gửi xác nhận." />}
+        />
+        <div className="flex flex-col gap-4 md:gap-5">
+          <h2 className="font-head text-[26px] leading-tight font-semibold text-navy md:text-[34px]">Khoản góp của bạn sẽ…</h2>
+          <ul className="grid gap-3 md:grid-cols-3 md:gap-5">
+            {promises.map(({ icon: Icon, text }) => (
+              <li key={text} className="flex items-center gap-3.5 rounded-xl bg-navy px-[18px] py-4 text-white md:items-start md:p-6">
+                <Icon aria-hidden className="size-7 shrink-0 text-flame-gold" />
+                <p className="text-[15px] leading-relaxed">{text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+    </>
   )
 }
 
