@@ -25,7 +25,7 @@ const stepLabels = ["Chọn số tiền", "Chuyển khoản", "Xác nhận"]
 
 const tips = [
   "Giữ nguyên nội dung chuyển khoản (mã của bạn) để ban tổ chức đối soát nhanh hơn.",
-  "Mỗi khoản đều được công khai trong danh sách ủng hộ sau khi xác nhận — bạn có thể chọn ẩn danh.",
+  "Đã gửi rồi? Bạn có thể tra cứu trạng thái bằng mã của mình.",
 ]
 
 /**

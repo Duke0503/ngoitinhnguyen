@@ -1,71 +1,47 @@
-import { routes } from "@/shared/config/routes"
 import Image from "next/image"
+import { Check, Radio } from "lucide-react"
 
+import { routes } from "@/shared/config/routes"
 import { Breadcrumb } from "@/shared/layout/breadcrumb"
-import { Section } from "@/shared/layout/section"
 import { formatRange } from "@/shared/lib/format"
 import { Chip } from "@/shared/ui/chip"
-import { Stat } from "@/shared/ui/stat"
-import { CalendarDays, Check, Radio } from "lucide-react"
 
 import { displayTitle, isFinished, keyStats, statusLabel, type Campaign } from "../domain/campaign"
 
-/** Night hero of a campaign page: breadcrumb, status, title, slogan, headline figures and photo. */
+/** Photo hero of a campaign page: breadcrumb, status, title, slogan, and the headline figures in a strip over the slanted edge. */
 function CampaignHero({ campaign }: { campaign: Campaign }) {
   const photo = campaign.hero ?? campaign.cover
   const stats = keyStats(campaign)
   const finished = isFinished(campaign)
 
   return (
-    <Section
-      tone="night"
-      spacing="none"
-      className="pt-7 pb-10 md:pt-14 md:pb-[72px]"
-      aria-labelledby="campaign-title"
-      containerClassName="grid gap-5 md:grid-cols-[1fr_540px] md:items-center md:gap-16 md:gap-y-0"
-    >
-      <div className="flex flex-col gap-5 md:gap-6 max-md:contents">
-        <Breadcrumb
-          tone="dark"
-          className="max-md:hidden"
-          items={[{ label: "Trang chủ", href: "/" }, { label: "Chương trình", href: routes.campaigns }, { label: displayTitle(campaign) }]}
-        />
-        <div className="flex flex-wrap gap-2 md:gap-2.5">
+    <section aria-labelledby="campaign-title" className="relative isolate overflow-hidden bg-night text-white">
+      <Image src={photo.src} alt="" fill preload sizes="100vw" className="hero-settle -z-20 object-cover object-[50%_35%]" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-night/80" />
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center gap-4 px-5 pt-8 pb-44 text-center md:gap-4 md:px-10 md:pt-14 md:pb-52">
+        <Breadcrumb tone="dark" className="max-md:hidden" items={[{ label: "Trang chủ", href: routes.home }, { label: "Chương trình", href: routes.campaigns }, { label: displayTitle(campaign) }]} />
+        <div className="flex flex-wrap justify-center gap-2 md:gap-2.5">
           <Chip tone={finished ? "success-dark" : "translucent"} icon={finished ? <Check aria-hidden /> : <Radio aria-hidden />}>
             {statusLabel(campaign)}
           </Chip>
-          <Chip tone="translucent" icon={<CalendarDays aria-hidden />}>
-            {formatRange(campaign.startsOn, campaign.endsOn)}
-          </Chip>
+          <Chip tone="translucent">{formatRange(campaign.startsOn, campaign.endsOn)}</Chip>
         </div>
-        <h1 id="campaign-title" className="font-head text-[32px] leading-[1.12] font-semibold text-balance text-white md:text-[54px] md:leading-[1.08]">
+        <h1 id="campaign-title" className="max-w-[1000px] font-head text-[34px] leading-[1.08] font-semibold text-balance md:text-[60px] md:leading-[1.07]">
           {campaign.title}
         </h1>
-        {campaign.slogan && <p className="font-head text-[17px] text-moon italic md:text-[22px]">“{campaign.slogan}”</p>}
-
-        <dl className="grid grid-cols-2 gap-x-4 gap-y-4 max-md:order-last md:flex md:pt-3">
-          {stats.map((s, i) => (
-            <div key={s.label}>
-              <dt className="sr-only">{s.label}</dt>
-              <dd>
-                <Stat
-                  tone="dark"
-                  size="md"
-                  divider="responsive"
-                  value={s.value}
-                  label={s.label}
-                  className={i === 0 ? "md:border-l-0 md:pr-7 md:pl-0" : "md:px-7"}
-                />
-              </dd>
-            </div>
-          ))}
-        </dl>
+        {campaign.slogan && <p className="max-w-[800px] font-head text-lg font-medium text-flame-gold italic md:text-2xl">“{campaign.slogan}”</p>}
       </div>
 
-      <div className="relative aspect-[5/3] overflow-hidden rounded-md md:aspect-[27/20]">
-        <Image src={photo.src} alt={photo.alt} fill preload sizes="(min-width: 768px) 540px, 100vw" className="object-cover" />
-      </div>
-    </Section>
+      <dl className="absolute inset-x-5 bottom-14 mx-auto flex max-w-[1100px] justify-between rounded-xl bg-white/12 px-3.5 py-4 backdrop-blur-sm md:bottom-24 md:px-8">
+        {stats.map((s) => (
+          <div key={s.label} className="flex flex-col items-center gap-0.5">
+            <dd className="order-1 font-head text-[26px] leading-none font-medium text-flame-gold tabular-nums md:text-[38px]">{s.value}</dd>
+            <dt className="order-2 text-xs text-white/85 md:text-sm">{s.label}</dt>
+          </div>
+        ))}
+      </dl>
+      <div aria-hidden className="absolute inset-x-0 bottom-[-1px] h-11 bg-paper [clip-path:polygon(0_100%,100%_100%,100%_0)] md:h-[74px]" />
+    </section>
   )
 }
 

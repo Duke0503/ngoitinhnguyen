@@ -13,7 +13,6 @@ import { Checkbox } from "@/shared/ui/checkbox"
 import { Field } from "@/shared/ui/field"
 import { FileDropzone } from "@/shared/ui/file-dropzone"
 import { Input } from "@/shared/ui/input"
-import { Switch } from "@/shared/ui/switch"
 import { Textarea } from "@/shared/ui/textarea"
 
 import { makeDonationSchema, type DonationFormFields, type DonationValues } from "../application/donation-schema"
@@ -43,7 +42,7 @@ function ConfirmForm({ fund, reference, suggestedAmount, onSubmitted }: ConfirmF
     formState: { errors, isSubmitting, dirtyFields },
   } = useForm<DonationFormFields, unknown, DonationValues>({
     resolver: zodResolver<DonationFormFields, DonationValues>(schema),
-    defaultValues: { donorName: "", amount: suggestedAmount ?? undefined, email: "", message: "", isPublic: true, referenceCode: reference ?? "" },
+    defaultValues: { donorName: "", amount: suggestedAmount ?? undefined, email: "", message: "", isPublic: false, referenceCode: reference ?? "" },
   })
 
   // Keep the amount in step with the picker until the donor types their own figure.
@@ -136,13 +135,6 @@ function ConfirmForm({ fund, reference, suggestedAmount, onSubmitted }: ConfirmF
             )}
           />
         </Field>
-
-        <div className="flex items-center gap-3">
-          <Controller name="isPublic" control={control} render={({ field }) => <Switch id="donor-public" checked={field.value} onCheckedChange={field.onChange} />} />
-          <label htmlFor="donor-public" className="text-sm leading-snug">
-            Hiển thị tên và lời nhắn trong danh sách ủng hộ
-          </label>
-        </div>
 
         <div className="flex flex-col gap-1.5">
           <div className="flex items-start gap-3">

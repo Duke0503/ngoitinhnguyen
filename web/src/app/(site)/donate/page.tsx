@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 // (account, presets, certificate rule) comes from the Fundraising context.
 const promises = [
   { icon: Heart, text: "Biến thành những món quà nhỏ gửi đến các em và các cô ở Mái ấm Thiên Phước, quận 12." },
-  { icon: FileCheck, text: "Được ghi nhận công khai, kèm giấy chứng nhận online có mộc đỏ khi đủ mức tối thiểu." },
+  { icon: FileCheck, text: "Được ban tổ chức ghi nhận và gửi giấy chứng nhận online có mộc đỏ khi đủ mức tối thiểu." },
   { icon: Receipt, text: "Được báo cáo thu — chi minh bạch sau khi chương trình tổng kết." },
 ]
 

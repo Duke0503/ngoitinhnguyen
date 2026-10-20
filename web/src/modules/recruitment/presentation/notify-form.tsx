@@ -54,7 +54,7 @@ function NotifyForm() {
           placeholder="Email của bạn"
           aria-invalid={!!error}
           aria-describedby={error ? "notify-error" : "notify-note"}
-          className="h-12 min-w-0 flex-1 rounded-full border border-white/25 bg-white/10 px-5 text-[15px] text-white outline-none placeholder:text-white/55 focus-visible:border-flame-gold focus-visible:ring-3 focus-visible:ring-flame-gold/30 aria-invalid:border-[#ff8a75]"
+          className="h-12 min-w-0 shrink-0 rounded-full sm:flex-1 sm:shrink border border-white/25 bg-white/10 px-5 text-[15px] text-white outline-none placeholder:text-white/55 focus-visible:border-flame-gold focus-visible:ring-3 focus-visible:ring-flame-gold/30 aria-invalid:border-[#ff8a75]"
         />
         <input name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0 opacity-0" />
         <Button type="submit" variant="gold" disabled={state === "sending"}>

@@ -14,9 +14,14 @@ import {
   LocationsSection,
   PhaseTimeline,
 } from "@/modules/campaigns"
-import { ClosedSummary, DonorList, FundProgress, fundraisingQueries, SummaryBar } from "@/modules/fundraising"
+import { ClosedSummary, FundProgress, fundraisingQueries, SummaryBar } from "@/modules/fundraising"
 import { CampaignPartners, sponsorshipQueries } from "@/modules/sponsorship"
+import Link from "next/link"
+
+import { routes } from "@/shared/config/routes"
+import { donateHref } from "@/shared/config/site"
 import { Section } from "@/shared/layout/section"
+import { Button } from "@/shared/ui/button"
 import { formatVnd } from "@/shared/lib/format"
 import { Card } from "@/shared/ui/card"
 
@@ -44,11 +49,10 @@ export default async function CampaignPage({ params }: { params: Promise<Params>
   const campaign = await campaignQueries.bySlug((await params).slug)
   if (!campaign || campaign.status === "draft") notFound()
 
-  const [current, progress, summary, donors, partners] = await Promise.all([
+  const [current, progress, summary, partners] = await Promise.all([
     campaignQueries.current(),
     fundraisingQueries.progressFor(campaign.code),
     fundraisingQueries.summaryFor(campaign.code),
-    fundraisingQueries.donorsFor(campaign.code),
     sponsorshipQueries.forCampaign(campaign.code),
   ])
   const promoted = current && current.slug !== campaign.slug ? current : null
@@ -77,7 +81,6 @@ export default async function CampaignPage({ params }: { params: Promise<Params>
           {campaign.phases && <PhaseTimeline phases={campaign.phases} />}
           <LocationsSection campaign={campaign} />
           {campaign.gallery && <CampaignGallery images={campaign.gallery} />}
-          <DonorList donors={donors} illustrative={summary?.illustrative} />
           <CampaignPartners partners={partners} title={`Đơn vị đồng hành cùng ${displayTitle(campaign)}`} />
         </div>
 
@@ -101,6 +104,26 @@ export default async function CampaignPage({ params }: { params: Promise<Params>
             <CampaignContact lead={campaign.lead} />
           </div>
         )}
+      </div>
+
+      <div className="bg-paper">
+        <section aria-labelledby="campaign-next-title" className="w-full bg-dusk-gradient px-5 py-[calc(var(--slant)+48px)] text-center text-white [--slant:clamp(28px,4.5vw,72px)] [clip-path:polygon(0_var(--slant),100%_0,100%_100%,0_100%)] md:px-10 md:py-[calc(var(--slant)+88px)]">
+          <div className="mx-auto flex max-w-[900px] flex-col items-center gap-6 md:gap-8">
+            <h2 id="campaign-next-title" className="font-head text-[30px] leading-[1.1] font-semibold text-balance md:text-5xl">
+              Cùng Ngòi viết tiếp chương trình sau.
+            </h2>
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
+              {promoted && (
+                <Button asChild size="lg" className="max-sm:w-full">
+                  <Link href={donateHref}>Ủng hộ {displayTitle(promoted)}</Link>
+                </Button>
+              )}
+              <Button asChild size="lg" variant="outline-light" className="max-sm:w-full">
+                <Link href={routes.recruitment}>Trở thành tình nguyện viên</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   )

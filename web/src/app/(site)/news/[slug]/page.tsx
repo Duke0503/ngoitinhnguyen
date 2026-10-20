@@ -2,18 +2,14 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft } from "lucide-react"
 
 import { campaignQueries, displayTitle } from "@/modules/campaigns"
 import { postQueries, PostBody, PostCard, PostGallery } from "@/modules/content"
 import { routes } from "@/shared/config/routes"
 import { Breadcrumb } from "@/shared/layout/breadcrumb"
-import { Container, Section } from "@/shared/layout/section"
+import { Section } from "@/shared/layout/section"
 import { formatDate } from "@/shared/lib/format"
 import { Callout } from "@/shared/ui/callout"
-import { MetaLine } from "@/shared/ui/meta"
-import { SectionHeading } from "@/shared/ui/section-heading"
-import { TextLink } from "@/shared/ui/text-link"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -36,30 +32,30 @@ export default async function PostPage({ params }: Props) {
   const post = await postQueries.bySlug((await params).slug)
   if (!post) notFound()
 
-  const [related, campaign] = await Promise.all([
-    postQueries.related(post),
-    post.campaignSlug ? campaignQueries.bySlug(post.campaignSlug) : null,
-  ])
+  const [related, campaign] = await Promise.all([postQueries.related(post), post.campaignSlug ? campaignQueries.bySlug(post.campaignSlug) : null])
 
   return (
     <>
-      <Section spacing="none" tone="white" className="pt-7 pb-14 md:pt-12 md:pb-20" containerClassName="flex flex-col gap-8 md:gap-10">
-        <Breadcrumb items={[{ label: "Trang chủ", href: routes.home }, { label: "Tin tức", href: routes.news }, { label: post.tag }]} />
+      <Section tone="paper" spacing="none" className="pt-6 pb-14 md:pt-10 md:pb-24" containerClassName="flex flex-col items-center gap-5 md:gap-8">
+        <Breadcrumb className="w-full max-w-[760px]" items={[{ label: "Trang chủ", href: routes.home }, { label: "Tin tức", href: routes.news }, { label: post.tag }]} />
 
-        <article className="flex flex-col gap-8 md:gap-10">
-          <header className="mx-auto flex w-full max-w-[760px] flex-col gap-4 md:gap-5">
-            <MetaLine tag={post.tag} date={formatDate(post.publishedOn)} />
-            <h1 className="font-head text-[28px] leading-[1.18] font-semibold text-balance text-navy md:text-[42px] md:leading-[1.15]">{post.title}</h1>
+        <article className="flex w-full flex-col items-center gap-5 md:gap-8">
+          <header className="flex w-full max-w-[760px] flex-col gap-3 md:gap-4">
+            <p className="flex items-center gap-3">
+              <span className="bg-navy px-3 py-1.5 text-xs font-bold tracking-[0.1em] text-white uppercase">{post.tag}</span>
+              <time className="text-sm font-semibold text-muted-ink">{formatDate(post.publishedOn)}</time>
+            </p>
+            <h1 className="font-head text-[30px] leading-[1.13] font-semibold text-balance text-navy md:text-5xl">{post.title}</h1>
           </header>
 
-          <div className="relative mx-auto aspect-[16/10] w-full max-w-[960px] overflow-hidden rounded-lg bg-navy/5 md:aspect-[16/9]">
-            <Image src={post.cover.src} alt={post.cover.alt} fill priority sizes="(min-width: 1000px) 960px, 100vw" className="object-cover" />
+          <div className="relative aspect-[3/2] w-full max-w-[1040px] overflow-hidden rounded-[10px] bg-navy/5 shadow-[0_16px_34px_-12px_rgba(11,18,51,0.35)] md:aspect-[13/7] md:rounded-[14px]">
+            <Image src={post.cover.src} alt={post.cover.alt} fill priority sizes="(min-width: 1080px) 1040px, 100vw" className="object-cover" />
           </div>
 
-          <div className="mx-auto flex w-full max-w-[760px] flex-col gap-8 md:gap-10">
+          <div className="flex w-full max-w-[760px] flex-col gap-6 md:gap-8">
             <PostBody blocks={post.blocks} />
             <Callout tone="navy">
-              Bài viết được đăng lại từ fanpage của Ngòi ngày {formatDate(post.publishedOn)}. Thông tin liên hệ, số tài khoản và hạn đăng ký có thể đã thay đổi — vui lòng xem trang{" "}
+              Bài được đăng lại từ fanpage ngày {formatDate(post.publishedOn)}. Thông tin liên hệ, số tài khoản và hạn đăng ký có thể đã thay đổi — vui lòng xem trang{" "}
               <Link href={routes.donate} className="font-semibold underline underline-offset-2">
                 Ủng hộ
               </Link>{" "}
@@ -70,32 +66,26 @@ export default async function PostPage({ params }: Props) {
               để biết thông tin mới nhất.
             </Callout>
             {campaign && (
-              <p className="text-[15px] text-muted-ink">
-                Thuộc chương trình{" "}
-                <TextLink href={routes.campaign(campaign.slug)}>{displayTitle(campaign)}</TextLink>
-              </p>
+              <Link href={routes.campaign(campaign.slug)} className="text-[15px] font-bold text-cta">
+                Thuộc chương trình {displayTitle(campaign)} &gt;&gt;&gt;
+              </Link>
             )}
           </div>
 
           {post.gallery.length > 0 && (
-            <div className="mx-auto w-full max-w-[960px]">
+            <div className="w-full max-w-[1040px]">
               <PostGallery photos={post.gallery} />
             </div>
           )}
         </article>
-
-        <Container className="mx-auto w-full max-w-[760px]">
-          <TextLink href={routes.news} className="inline-flex items-center gap-2">
-            <ArrowLeft aria-hidden className="size-4" />
-            Tất cả bài viết
-          </TextLink>
-        </Container>
       </Section>
 
       {related.length > 0 && (
-        <Section spacing="md" aria-labelledby="related-title" containerClassName="flex flex-col gap-8 md:gap-10">
-          <SectionHeading id="related-title" as="h2" size="md" eyebrow="Đọc thêm" title={campaign ? `Cùng chương trình ${displayTitle(campaign)}` : `Thêm về “${post.tag}”`} />
-          <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        <Section tone="paper" spacing="lg" className="bg-sand" aria-labelledby="related-title" containerClassName="flex flex-col items-center gap-8 md:gap-10">
+          <h2 id="related-title" className="font-head text-[26px] leading-tight font-semibold text-navy md:text-[40px]">
+            {campaign ? `Đọc thêm về ${displayTitle(campaign)}` : `Thêm về “${post.tag}”`}
+          </h2>
+          <ul className="grid w-full gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-7">
             {related.map((p) => (
               <li key={p.slug}>
                 <PostCard post={p} />
