@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react"
 import { routes } from "@/shared/config/routes"
 import { Section } from "@/shared/layout/section"
 import { Button } from "@/shared/ui/button"
-import { Eyebrow } from "@/shared/ui/eyebrow"
 import { SnapRow } from "@/shared/ui/snap-row"
 
 import { seriesLabel, type CampaignSeries } from "../domain/campaign"
@@ -48,20 +47,16 @@ const programmes: Programme[] = [
 function ProgrammeCards() {
   return (
     <Section tone="paper" spacing="lg" aria-labelledby="programmes-title" containerClassName="flex flex-col gap-10 md:gap-16">
-      <div className="grid gap-8 md:grid-cols-[1fr_340px] md:items-end md:gap-24">
-        <div className="flex flex-col gap-4 md:gap-5">
-          <Eyebrow tone="cta">Ngòi làm gì</Eyebrow>
-          <h2 id="programmes-title" className="font-head text-[30px] leading-[1.2] font-semibold text-balance text-navy md:text-[44px] md:leading-[1.18]">
-            Mỗi em nhỏ đều xứng đáng được đến trường, được đọc sách và được yêu thương.
-          </h2>
-          <p className="max-w-[62ch] text-base leading-relaxed text-muted-ink md:text-[17px]">
-            Bốn mùa trong năm, Ngòi đi những chuyến rất cụ thể: một ngày hội đọc sách, một đêm Trung thu trên ấp đảo, một cái Tết ở điểm trường.
-          </p>
-        </div>
-        <figure className="border-l-[3px] border-flame-orange pl-4 md:pl-7">
-          <blockquote className="font-head text-[19px] leading-snug font-medium text-navy italic md:text-[26px]">“Vì nụ cười của em trên con đường tìm con chữ.”</blockquote>
-          <figcaption className="mt-2 text-[13px] text-muted-ink">Giới thiệu logo · 12.08.2024</figcaption>
-        </figure>
+      <div className="mx-auto flex max-w-[980px] flex-col items-center gap-5 text-center md:gap-7">
+        <h2 className="font-head text-[28px] leading-[1.2] font-semibold text-balance text-flame-orange md:text-[46px]">
+          Chúng mình tin rằng mỗi em nhỏ đều xứng đáng được đến trường, được đọc sách và được yêu thương.
+        </h2>
+        <p id="programmes-title" className="font-head text-[26px] leading-tight font-semibold text-navy md:text-[38px]">
+          Ngòi làm gì, từng mùa một
+        </p>
+        <p className="max-w-[62ch] text-base leading-relaxed text-ink md:text-lg">
+          Bốn mùa trong năm, Ngòi đi những chuyến rất cụ thể: một ngày hội đọc sách, một đêm Trung thu trên ấp đảo, một cái Tết ở điểm trường.
+        </p>
       </div>
 
       <SnapRow aria-label="Các dòng chương trình" gridClassName="md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
@@ -82,7 +77,7 @@ function ProgrammeCards() {
       </SnapRow>
 
       <div className="flex justify-center">
-        <Button asChild size="lg" className="bg-navy hover:bg-night max-sm:w-full">
+        <Button asChild size="lg" variant="gold" className="max-sm:w-full">
           <Link href={routes.campaigns}>
             Xem tất cả chương trình
             <ArrowRight aria-hidden />

@@ -17,7 +17,7 @@ function NewsSection({ posts }: { posts: Post[] }) {
   if (!lead) return null
 
   return (
-    <Section spacing="lg" aria-labelledby="news-title" containerClassName="flex flex-col gap-8 md:gap-12">
+    <Section tone="white" spacing="lg" aria-labelledby="news-title" containerClassName="flex flex-col gap-8 md:gap-12">
       <div className="flex items-end justify-between gap-6">
         <div className="flex flex-col gap-3">
           <Eyebrow tone="cta">Mới đăng trên fanpage</Eyebrow>
