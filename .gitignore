@@ -1,0 +1,14 @@
+# raw crawl of the fanpage (contains personal phone numbers) and private source files
+fanpage/
+*.pdf
+# tooling
+_bmad/
+_bmad-output/
+# design backups
+design/archive/
+# web
+web/node_modules/
+web/.next/
+web/.env*
+web/*.tsbuildinfo
+.DS_Store
