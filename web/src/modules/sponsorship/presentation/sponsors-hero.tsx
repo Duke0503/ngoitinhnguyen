@@ -1,56 +1,34 @@
-import { Download } from "lucide-react"
+import Image from "next/image"
 
-import { Section } from "@/shared/layout/section"
 import { Button } from "@/shared/ui/button"
-import { Eyebrow } from "@/shared/ui/eyebrow"
-import { FlameRule } from "@/shared/ui/flame-rule"
 
 export type ProofPoint = { value: string; label: string }
 
-type SponsorsHeroProps = {
-  email: string
-  /** Figures owned by other contexts (campaign count, provinces, followers, legal patron), passed in by the page. */
-  proof: ProofPoint[]
-}
-
 const requestHref = (email: string) => `mailto:${email}?subject=${encodeURIComponent("Xin hồ sơ tài trợ chương trình Ngòi Tình Nguyện")}`
 
-function SponsorsHero({ email, proof }: SponsorsHeroProps) {
+/** Photo hero: one headline, two actions. (Proof figures now live in the track-record strip below.) */
+function SponsorsHero({ email }: { email: string; proof?: ProofPoint[] }) {
   return (
-    <Section spacing="none" className="pt-9 pb-10 md:pt-20 md:pb-20" aria-labelledby="sponsors-title" containerClassName="grid gap-8 md:grid-cols-[1fr_480px] md:items-center md:gap-[72px]">
-      <div className="flex flex-col gap-5 md:gap-6">
-        <Eyebrow tone="orange" className="tracking-[0.14em] md:tracking-[0.18em]">
-          Dành cho doanh nghiệp, tổ chức &amp; mạnh thường quân
-        </Eyebrow>
-        <h1 id="sponsors-title" className="font-head text-[32px] leading-[1.12] font-semibold text-balance text-navy md:text-[52px] md:leading-[1.1]">
-          Đồng hành cùng Ngòi, để món quà đến đúng nơi cần
+    <section aria-labelledby="sponsors-title" className="relative isolate overflow-hidden bg-night text-white">
+      <Image src="/images/photos3/iabang-volunteers.jpg" alt="" fill preload sizes="100vw" className="hero-settle -z-20 object-cover object-[50%_30%]" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-night/80" />
+      <div className="mx-auto flex min-h-[440px] w-full max-w-[1100px] flex-col items-center justify-center gap-4 px-5 pt-14 pb-24 text-center md:min-h-[520px] md:gap-5 md:px-10 md:pb-28">
+        <p className="max-w-[28ch] text-[11px] leading-relaxed font-bold tracking-[0.18em] text-flame-gold uppercase md:max-w-none md:text-[13px] md:tracking-[0.2em]">Dành cho doanh nghiệp, tổ chức &amp; mạnh thường quân</p>
+        <h1 id="sponsors-title" className="font-head text-[40px] leading-[1.05] font-semibold text-balance md:text-[68px]">
+          Đồng hành cùng Ngòi.
         </h1>
-        <FlameRule />
-        <p className="text-base leading-relaxed text-muted-ink md:text-lg">
-          Mỗi đóng góp của đơn vị bạn được ghi nhận công khai, sử dụng đúng mục đích và báo cáo lại sau mỗi chương trình.
-        </p>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-3.5">
+        <p className="max-w-[700px] text-[15px] leading-relaxed text-white/90 md:text-[19px]">Món quà của đơn vị bạn đến đúng nơi, được ghi nhận công khai và báo cáo lại sau mỗi chương trình.</p>
+        <div className="mt-2 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-3.5">
           <Button asChild size="lg" className="max-sm:w-full">
-            <a href={requestHref(email)}>
-              Nhận hồ sơ tài trợ
-              <Download aria-hidden />
-            </a>
+            <a href={requestHref(email)}>Nhận hồ sơ tài trợ</a>
           </Button>
-          <Button asChild size="lg" variant="outline" className="max-sm:w-full">
+          <Button asChild size="lg" variant="outline-light" className="max-sm:w-full">
             <a href="#contact">Liên hệ ban tổ chức</a>
           </Button>
         </div>
       </div>
-
-      <dl className="flex flex-col rounded-xl bg-night px-5 py-1 md:px-8 md:py-3">
-        {proof.map((p, i) => (
-          <div key={p.label} className={`flex items-center gap-4 py-3.5 md:gap-5 md:py-5 ${i > 0 ? "border-t border-white/12" : ""}`}>
-            <dt className="order-2 text-sm leading-normal text-white/80 md:text-[15px]">{p.label}</dt>
-            <dd className="order-1 w-20 shrink-0 font-head text-[26px] font-medium text-flame-gold tabular-nums md:w-[110px] md:text-4xl">{p.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </Section>
+      <div aria-hidden className="absolute inset-x-0 bottom-[-1px] h-11 bg-paper [clip-path:polygon(0_100%,100%_100%,100%_0)] md:h-20" />
+    </section>
   )
 }
 
