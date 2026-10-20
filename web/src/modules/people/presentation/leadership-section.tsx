@@ -31,7 +31,7 @@ function LeadershipSection({ eyebrow, title, description, members, memberCount }
         </h2>
         <p className="max-w-[820px] text-[15px] leading-relaxed text-muted-ink md:text-lg">{description}</p>
       </div>
-      <ul className="-mx-5 flex w-[calc(100%+40px)] snap-x gap-3 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:w-full md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
+      <ul className="-mx-5 flex w-[calc(100%+40px)] snap-x scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:w-full md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
         {featured.map((m, i) => (
           <li key={m.name} className="flex w-[200px] shrink-0 snap-start flex-col gap-2 md:w-auto md:gap-3.5">
             <div className="relative aspect-[240/252] overflow-hidden rounded-xl shadow-[0_12px_28px_-10px_rgba(11,18,51,0.35)] md:aspect-auto md:h-[340px] md:rounded-[14px]">

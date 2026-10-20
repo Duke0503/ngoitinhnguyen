@@ -17,3 +17,10 @@ Changes:
 - Home (desktop + mobile), following the trust pattern Hero → Proof → Overview → CTA:
   - “Được bảo trợ và đồng hành bởi” partner strip moved up, directly under the impact numbers, now with real logos (VNV, Đồng phục H&P, Nhóm Thiện nguyện Vọng, Vàng Studio) plus wordmark tiles.
   - New closing CTA band before the footer: “Mỗi đóng góp nhỏ đều viết tiếp một câu chuyện cho các em.” + Ủng hộ / Trở thành tình nguyện viên.
+
+## 2026-10-20 — v3: photo-led redesign, cleanup
+
+- Home and About redesigned after studying bluedragon.org (see `docs/DESIGN-LEARNINGS.md`); old Home v1/v2/v3 and About v2/v5 frames deleted (backup: `design/archive/ngoi-website-before-cleanup-2026-10-20.pen`).
+- Home: centred full-bleed hero, programmes as "Một năm của Ngòi" (prints pinned on a rope, in calendar order), counters, live campaign, four-card ways band, front-page news, newsletter band.
+- About v6: polaroid hero, vision card, three chapters with ghost years, photo strip, portraits, VNV decision. Motion spec in the "About — Motion notes" frame.
+- Photos cropped from the fanpage crawl live in `design/assets/photos2/` and `photos3/`.

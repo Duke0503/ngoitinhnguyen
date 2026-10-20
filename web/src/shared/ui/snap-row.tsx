@@ -70,7 +70,7 @@ function SnapRow({ children, gridClassName, dotClassName = "bg-line", activeDotC
         ref={ref}
         {...aria}
         className={cn(
-          "-mx-5 flex snap-x snap-mandatory gap-3.5 overflow-x-auto px-5 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:snap-none md:overflow-visible md:px-0 md:pb-0",
+          "-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3.5 overflow-x-auto px-5 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:snap-none md:scroll-px-0 md:overflow-visible md:px-0 md:pb-0",
           gridClassName
         )}
       >
